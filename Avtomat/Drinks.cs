@@ -8,8 +8,14 @@ namespace Avtomat
 {
     public class Drinks
     {
+        public System.Drawing.Image jpg;
         public int volume = 0;//объём
         public static Random rnd = new Random();
+        public virtual System.Drawing.Image GetJPG()
+        {
+            
+            return jpg;
+        }
         public virtual String GetInfo()
         {
             var str = String.Format("\nОбъём: {0}мл.", this.volume);
@@ -30,6 +36,23 @@ namespace Avtomat
             str += String.Format("\nФрукт: {0}", this.fruit);
             str += String.Format("\nНаличие мякоти: {0}", this.pulp);
             return str;
+        }
+
+        public override System.Drawing.Image GetJPG()
+        {
+            switch (fruit)
+            {
+                case "апельсин":
+                    jpg = Properties.Resources.pulpe;
+                    break;
+                case "яблоко":
+                    jpg = Properties.Resources.aple;
+                    break;
+                default:
+                    jpg = Properties.Resources.tomat;
+                    break;
+            }
+            return jpg;
         }
 
         // статический метод генерации случайного сока
@@ -61,7 +84,19 @@ namespace Avtomat
             str += String.Format("\nВид: {0}", this.type);
             return str;
         }
-
+        public override System.Drawing.Image GetJPG()
+        {
+            switch (type)
+            {
+                case SodaType.kolla:
+                    jpg = Properties.Resources.cola;
+                    break;
+                default:
+                    jpg = Properties.Resources.fanta;
+                    break;
+            }
+            return jpg;
+        }
         public static Soda Generate()
         {
             return new Soda
@@ -87,6 +122,19 @@ namespace Avtomat
             str += String.Format("\nКрепость: {0}%", this.strength);
             str += String.Format("\nТип: {0}", this.type);
             return str;
+        }
+        public override System.Drawing.Image GetJPG()
+        {
+            switch (type)
+            {
+                case AlcoType.beer:
+                    jpg = Properties.Resources.pivo;
+                    break;
+                default:
+                    jpg = Properties.Resources.sidr;
+                    break;
+            }
+            return jpg;
         }
         public static Alco Generate()
         {

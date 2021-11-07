@@ -77,6 +77,7 @@ namespace Avtomat
             if (this.drinksList.Count == 0)
             {
                 txtOut.Text = "Пусто Q_Q";
+                jpgBox.Image = Properties.Resources.gg;
                 return;
             }
 
@@ -86,6 +87,8 @@ namespace Avtomat
 
             //теперь предложим покупателю его фрукт
             txtOut.Text = drink.GetInfo();
+
+            jpgBox.Image = drink.GetJPG();
 
             // обновим информацию о количестве товара на форме
             ShowInfo();
